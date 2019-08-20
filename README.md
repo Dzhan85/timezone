@@ -92,10 +92,36 @@ Swap:
 
 3.1 Creating deploy.yml file
 
+```
+- hosts: webservers
+  become: yes
+  become_method: sudo
+  
+  task:
+  - name: update cache
+    apt: name=python-software-properties state=present update_cache=yes cache_valid_time=43200
+  - name: install packages
+    apt: name={{item}} state=installed
+    with_items:
+      - python3-pip
+      - python3-dev
+      - flask
+      
+    - name: Pull file from source
+      git: https://github.com/Dzhan85/timezone.git
+      dest: /home/{{ ansible_ssh_user }}/{{ app_name }}
+      update: yes  # Does a git pull if the repo already exists
+  - name: install modules in a virtualenv
+    pip:
+      requirements: /home/{{ ansible_ssh_user }}/{{ app_name }}/requirements.txt
+      virtualenv: /home/{{ ansible_ssh_user }}/{{ app_name }}/env
+      virtualenv_python: python3.5
+  
+  
+```
 
 
-
-or
+or with 
 
 ```
 flaskapp_app_name: flaskclock
