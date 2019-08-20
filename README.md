@@ -34,6 +34,22 @@ apt-get install -y python3 python3-dev python3-pip
   sudo apt install ansible
   
   ```
+or
+
+Installing Ansible-galaxy:
+```
+
+
+ansible-galaxy install hypebeast.flaskapp
+```
+```
+root@test-Book:/home/test/Desktop/LIALAB/timezone# ansible-galaxy install hypebeast.flaskapp
+- downloading role 'flaskapp', owned by hypebeast
+- downloading role from https://github.com/hypebeast/ansible-flask-stack/archive/master.tar.gz
+- extracting hypebeast.flaskapp to /root/.ansible/roles/hypebeast.flaskapp
+- hypebeast.flaskapp (master) was installed successfully
+
+```
 
 2. Configuring location of hosts and its IP addresses:
 
@@ -73,6 +89,14 @@ Swap:
 
 
 3. Creating Ansible playbook:
+
+3.1 Creating deploy.yml file
+
+```
+
+```
+
+3.2
 
 
 
