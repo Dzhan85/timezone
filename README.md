@@ -93,10 +93,57 @@ Swap:
 3.1 Creating deploy.yml file
 
 ```
+flaskapp_app_name: flaskclock
+
+# Port for the application
+flaskapp_port: 80
+
+flaskapp_app_directory: "/app/{{ flaskapp_app_name }}"
+
+# The directory to keep application logs.
+flaskapp_app_log_directory: "/var/log/{{ flaskapp_app_name }}"
+
+flaskapp_app_requirements: "{{ flaskapp_app_directory }}/requirements.txt"
+
+# The remote git repository to pull application code:
+# 
+flaskapp_app_repository: https://github.com/Dzhan85/timezone.git
+
+# The version of the repository to checkout. This can be a full
+# 40-character SHA1 hash, the branch or a tag name.
+flaskapp_app_version: master
+
+# The list of environment variables uses to run most of commands.
+flaskapp_app_environment:
+  PATH: "{{ flaskapp_app_directory }}/bin:{{ ansible_env.PATH }}"
+
+# The list of custom commands to run before and after deploy. These commands
+# uses previously defined environment to run.
+flaskapp_app_pre_hooks: []
+flaskapp_app_post_hooks: []
+
+# The path to application config to use when launch application.
+flaskapp_app_config:
+
+# The Python version which should be installed
+flaskapp_python_version: 3.7
+
+# The list of system packages required to build/run application.
+flaskapp_app_packages:
+  - git
+  - python{{ flaskapp_python_version }}
+  - build-essential
+  - python3-dev
+  - python3-pip
+  - python3-virtualenv
+  - libpq-dev
+  - build-essential
+
+
 
 ```
 
-3.2
+3.2 ansible-playbook -i hosts deploy.yml
 
 
 
