@@ -6,5 +6,10 @@
 
 ## Ansible deployment
 
+Installig Ansible locally:
+
+  '''sudo apt install ansible'''
+
+
 
 
